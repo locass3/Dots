@@ -1,9 +1,7 @@
 #Docker Aliases
 
-alias dockershell="docker run --rm -it"
-alias dockershellsh="docker run --rm -it"
-
-alias dockerkeep="docker run -it"
+alias dshell="docker run --rm -it -v /home/locass03/shared:/root/shared"
+alias dkeep="docker run -it -v /home/locass03/shared:/root/shared"
 
 function dockershellhere() {
     dirname=${PWD##*/}
@@ -22,8 +20,11 @@ smbservehere() {
     docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
 }
 
-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+#Single Commands
 
-
+alias recon="docker run --rm -it -v /home/locass03/shared:/root/shared recon"
+alias webhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+alias webshare='docker run --rm -it -p 80:80 -p 443:443 -v "home/locass03/shared:/srv/data" rflathers/nginxserve'
 alias msfvenomhere='docker run --rm -it -v "${HOME}/.msf4:/home/msf/.msf4" -v "${PWD}:/data" msf ./msfvenom'
+
 
